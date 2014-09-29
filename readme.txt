@@ -1,2 +1,2 @@
-¿Õ°×¼Ü¹¹+demo
-springmvc+freemarker+maven
+1.springmvc+freemarker+maven
+2.¿Õ°×¿ò¼Ü
