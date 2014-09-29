@@ -1,2 +1,2 @@
 1.springmvc+freemarker+maven
-2.¿Õ°×¿ò¼Ü
+2.°ü¿ÕµÄ¿ò¼Ü¡£
