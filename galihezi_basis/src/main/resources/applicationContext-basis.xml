@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		   http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+           
+    <!--对web包中的所有类进行扫描，以完成Bean创建和自动依赖注入的功能 -->
+	<context:component-scan base-package="com.founder.pod.galihezi.basis.manager.*,com.founder.pod.galihezi.basis.service.*" />
+    <!-- 数据库配置 -->
+	<bean id="oraDataSource" class="com.jolbox.bonecp.BoneCPDataSource" destroy-method="close">
+	  	<property name="driverClass" value="${bonecp.oracle.driverClass}" />
+	  	<property name="jdbcUrl" value="${bonecp.oracle.jdbcUrl}" />
+	  	<property name="username" value="${bonecp.oracle.user}"/>
+	  	<property name="password" value="${bonecp.oracle.password}"/>
+	  	<property name="idleMaxAgeInMinutes" value="${bonecp.idleMaxAgeInMinutes}"/>
+	  	<property name="partitionCount" value="${bonecp.partitionCount}"/>
+	  	<property name="acquireIncrement" value="${bonecp.acquireIncrement}"/>
+	  	<property name="statementsCacheSize" value="${bonecp.statementsCacheSize}"/>
+	  	<property name="releaseHelperThreads" value="${bonecp.releaseHelperThreads}"/>
+	  	<property name="idleConnectionTestPeriodInMinutes" value="${bonecp.idleConnectionTestPeriodInMinutes}"/>
+	  	<property name="maxConnectionsPerPartition" value="${bonecp.maxConnectionsPerPartition}"/>
+	  	<property name="minConnectionsPerPartition" value="${bonecp.minConnectionsPerPartition}"/>
+  	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource">
+			<ref local="oraDataSource" />
+		</property>
+		<property name="configLocation">
+			<value>classpath:/mybatis/mybatis-config.xml</value>
+		</property>
+		<property name="mapperLocations"> 
+			<list>
+				<value>classpath:/mybatis/mapper/**/*.xml</value>
+			</list>
+		</property>
+		<property name="typeAliasesPackage" value="com.founder.pod.galihezi.basis.domain" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.founder.pod.galihezi.basis.dao" />
+    </bean>
+    <bean id="TransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">   
+         <property name="dataSource" ref="oraDataSource"/>   
+    </bean>
+	<aop:config>
+		<aop:pointcut
+			expression="execution( * com.founder.pod.galihezi.basis.manager.*.*(..))"
+			id="txservice" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txservice" />
+	</aop:config>
+	<tx:advice transaction-manager="TransactionManager" id="txAdvice">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED"/>
+			<tx:method name="find*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+</beans>

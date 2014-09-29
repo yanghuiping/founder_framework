@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.founder.pod.galihezi.basis.dao.demo.IDemoMapper">
+	
+	<select id="findDemoDO" parameterType="DemoDO" resultType="DemoDO">
+		select id from user_user 
+		where 1=1
+		<if test="id != null">
+			and id=#{id}
+		</if>
+	</select>
+</mapper>

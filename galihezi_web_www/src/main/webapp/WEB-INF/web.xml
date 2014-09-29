@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>web_www</display-name>
+
+	<!-- spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext-web-www.xml</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:springmvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/</url-pattern>
+		<!-- <url-pattern>*.htm</url-pattern> -->
+	</servlet-mapping>
+
+	<!-- ====================================================== -->
+	<!-- welcome files -->
+	<!-- ====================================================== -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+    
+
+	<!-- ====================================================== -->
+	<!-- error pages -->
+	<!-- ====================================================== -->
+	<error-page>
+		<error-code>400</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>401</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>405</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>407</error-code>
+		<location>/error407.html</location>
+	</error-page>
+	<error-page>
+		<error-code>408</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>414</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>415</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error500.html</location>
+	</error-page>
+	<error-page>
+		<error-code>501</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>503</error-code>
+		<location>/error.html</location>
+	</error-page>
+</web-app>

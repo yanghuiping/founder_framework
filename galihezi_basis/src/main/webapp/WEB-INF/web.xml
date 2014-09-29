@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.4"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee   http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	
+	<display-name>galihezi_basis</display-name>
+	
+	<!-- log4j -->
+	<context-param>
+	<param-name>log4jConfigLocation</param-name>
+	<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+	
+	<!-- hessian -->
+	<servlet>
+	<servlet-name>remote</servlet-name>
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	  <init-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>classpath:/hessian/remote-accessor.xml</param-value>
+	  </init-param>
+	  <init-param>
+	    <param-name>namespace</param-name>
+	    <param-value>remote-servlet</param-value>
+	  </init-param>
+	<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	   <servlet-name>remote</servlet-name>
+	   <url-pattern>/remoting/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- spring -->
+	<listener>
+	   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>classpath:applicationContext-basis.xml</param-value>
+	</context-param>
+	
+	<!-- welcome page -->
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+	
+    <!-- error page -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error.html</location>
+	</error-page>
+	
+</web-app>
