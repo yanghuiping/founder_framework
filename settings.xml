@@ -134,20 +134,20 @@ under the License.
 	
   
     <server>    
-      <id>founderdpt</id>    
-      <username>founderdpt</username>    
+      <id>yanghuiping</id>    
+      <username>yanghuiping</username>    
       <password>123456</password>    
     </server>
 	
 	<server>    
-      <id>founderdpt-releases</id>    
-      <username>founderdpt</username>    
+      <id>yanghuiping-releases</id>    
+      <username>yanghuiping</username>    
       <password>123456</password>    
     </server>
 	
    <server>    
-      <id>founderdpt-snapshots</id>    
-      <username>founderdpt</username>    
+      <id>yanghuiping-snapshots</id>    
+      <username>yanghuiping</username>    
       <password>123456</password>    
     </server>
  
@@ -182,7 +182,7 @@ under the License.
 	 <mirror>  
       <id>UK</id>  
       <name>UK Central</name>  
-      <url>http://192.168.8.253:8081/nexus/content/groups/com.founderdpt/</url>  
+      <url>http://192.168.8.253:8081/nexus/content/groups/com.yanghuiping/</url>  
       <mirrorOf>*</mirrorOf>  
 	</mirror>  
   </mirrors>
@@ -274,12 +274,12 @@ under the License.
     </profile>
     -->
 	 <profile>  
-	      <id>founderdpt</id>  
+	      <id>yanghuiping</id>  
 		  <repositories>
 			<repository>
-				<id>com.founderdpt</id>
-				<name>founderdpt</name>
-				<url>http://192.168.8.253:8081/nexus/content/groups/com.founderdpt/</url>
+				<id>com.yanghuiping</id>
+				<name>yanghuiping</name>
+				<url>http://192.168.8.253:8081/nexus/content/groups/com.yanghuiping/</url>
 				<releases>
 					<enabled>true</enabled>
 				</releases>
@@ -290,9 +290,9 @@ under the License.
 		</repositories>
 		<pluginRepositories>
 			<pluginRepository>
-				<id>com.founderdpt</id>
-				<name>founderdpt</name>
-				<url>http://192.168.8.253:8081/nexus/content/groups/com.founderdpt/</url>
+				<id>com.yanghuiping</id>
+				<name>yanghuiping</name>
+				<url>http://192.168.8.253:8081/nexus/content/groups/com.yanghuiping/</url>
 				<releases>
 					<enabled>true</enabled>
 				</releases>
@@ -307,7 +307,7 @@ under the License.
   </profiles>
   
  <activeProfiles>  
-    <activeProfile>founderdpt</activeProfile>  
+    <activeProfile>yanghuiping</activeProfile>  
   </activeProfiles>  
  
   <!-- activeProfiles
